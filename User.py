@@ -15,5 +15,11 @@ class User:
     def infect(self):
         self.infected = True
     def addCoach(self,user):
-        self.students.append(user)
-        user.coaches.append(self)
+        user.students.append(self)
+        self.coaches.append(user)
+
+    def printStudents(self):
+        students = []
+        for s in self.students:
+            students.append(s.name)
+        print "{} has students: {}".format(self.name, students)
