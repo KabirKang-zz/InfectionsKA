@@ -19,9 +19,11 @@ class User:
         user.students.append(self)
         self.coaches.append(user)
 
-    def addStudent(self,user):
-        self.students.append(user)
-        user.coaches.append(self)
+    def addStudents(self,user):
+        self.students.extend(user)
+        for u in user:
+            u.coaches.append(self)
+        self.students = set(self.students)
 
     def printStudents(self):
         students = []
