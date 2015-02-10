@@ -3,8 +3,8 @@ __author__ = 'Kabir'
 class User:
     def __init__(self, name = "User"):
         self.name = name
-        self.coaches = []
-        self.students = []
+        self.coaches = set([])
+        self.students = set([])
         self.infected = False
     def __str__(self):
         if(self.infected):
@@ -14,16 +14,16 @@ class User:
 
     def infect(self):
         self.infected = True
+
     def addCoach(self,user):
-        # Need to include check that user not in list yet
-        user.students.append(self)
-        self.coaches.append(user)
+        for u in user:
+            u.students.add(self)
+            self.coaches.add(u)
 
     def addStudents(self,user):
-        self.students.extend(user)
         for u in user:
-            u.coaches.append(self)
-        self.students = set(self.students)
+            self.students.add(u)
+            u.coaches.add(self)
 
     def printStudents(self):
         students = []
