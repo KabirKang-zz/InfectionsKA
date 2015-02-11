@@ -17,3 +17,7 @@ limited_infection:
   
   Then the infection spreads recursively in this order, attempting to target users with the smaller number of students,
   so we can reach the target number.
+
+
+I am in the middle of recruitment on top of working on a startup, so I was not able to tackle the optional parts.
+If I had more time to work on this project, I would have added a graphical interface, so testing is more obvious.
