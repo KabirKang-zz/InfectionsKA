@@ -2,7 +2,7 @@ from User import User
 import Infection
 
 def test():
-
+    # 26 users a-z
     a = User("a")
     b = User("b")
     c = User("c")
@@ -33,7 +33,7 @@ def test():
     v = User("v")
     w = User("w")
     x = User("x")
-
+    # Edge case: disconnected portion of the graph
     y = User("y")
     z = User("z")
 
@@ -69,6 +69,31 @@ def test():
     for user in User.users:
         if user != y and user != z:
             assert(user.infected == True)
+        else:
+            assert(user.infected==False)
+
+    # Disinfect all users again
+    for user in User.users:
+        user.disinfect()
+        assert(user.infected==False)
+
+    Infection.limited_infection(a,1)
+    for user in User.users:
+        if user == a:
+            assert(user.infected==True)
+        else:
+            assert(user.infected==False)
+
+    a.disinfect()
+
+    # This number can be manipulated and the printed user statuses reviewed
+    Infection.limited_infection(j, 16)
+
+    print "{} infected".format(User.total_infected)
+
+    for user in User.users:
+        print "{} infection status: {}".format(user.name,user.infected)
+
 
 
 

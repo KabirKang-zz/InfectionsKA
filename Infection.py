@@ -47,7 +47,7 @@ def limited_infection(focus, targetNum):
 
         coaches = []
         for coach in focus.coaches:
-            coaches.append((len(coach.coaches),coach))
+            coaches.append((len(coach.coaches), coach))
 
         coaches.sort()  # Sort coaches by their number of coaches
 

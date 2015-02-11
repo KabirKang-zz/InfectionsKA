@@ -1,13 +1,15 @@
 __author__ = 'Kabir'
-# Defines a superclass for users of a network-like service
+# Defines a user class with methods to infect, disinfect and member variables
+# that aid the infection spread methods
 class User:
 
-    population = 0
+    population = 0  # incremented when users are created
 
-    total_infected = 0
+    total_infected = 0  # incremented when user infected, decremented when disinfected
 
-    users = []
+    users = [] #    array which illustrates a graph of users
 
+    # User constructor
     def __init__(self, name = "User"):
         self.name = name
         self.coaches = set([])
@@ -23,29 +25,35 @@ class User:
             return "{} is not infected.".format(self.name)
 
     def infect(self):
-        self.infected = True
-        User.total_infected += 1
+        if self.infected == False:
+            self.infected = True
+            User.total_infected += 1
 
     def disinfect(self):
-        self.infected = False
-        User.total_infected -= 1
+        if self.infected == True:
+            self.infected = False
+            User.total_infected -= 1
 
+    # Coaches can be added to a user in a list
     def addCoaches(self,user):
         for u in user:
             u.students.add(self)
             self.coaches.add(u)
 
+    # Students can be added to a user in a list
     def addStudents(self,user):
         for u in user:
             self.students.add(u)
             u.coaches.add(self)
 
+    # Method to print the students of a user
     def printStudents(self):
         students = []
         for s in self.students:
             students.append(s.name)
         print "{} has students: {}".format(self.name, self.students)
 
+    # Method to print the coaches of a user
     def printCoaches(self):
         coaches = []
         for c in self.coaches:
