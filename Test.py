@@ -77,7 +77,7 @@ def test():
         user.disinfect()
         assert(user.infected==False)
 
-    Infection.limited_infection(a,1)
+    Infection.limited_infection(a, 1)
     for user in User.users:
         if user == a:
             assert(user.infected==True)
@@ -87,7 +87,7 @@ def test():
     a.disinfect()
 
     # This number can be manipulated and the printed user statuses reviewed
-    Infection.limited_infection(j, 16)
+    Infection.limited_infection(j, 13)
 
     print "{} infected".format(User.total_infected)
 

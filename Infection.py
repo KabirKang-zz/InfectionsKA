@@ -27,31 +27,24 @@ def spread(spreadFrom, spreadTo):
 # This method sorts a user's students by the number of students they have and coaches by their number of coaches.
 # It infects smaller subtrees to ensure that the number gets as close to the target as possible
 def limited_infection(focus, targetNum):
+
     if targetNum>User.population:
         exit("The population is not even that high!")
 
-    if User.total_infected>=targetNum:
+    if User.total_infected>targetNum:
         return
 
     else:
         focus.infect()
-
-        classroom = []
+        adjacency = []
         for student in focus.students:
-            classroom.append((len(student.students),student))
-
-        classroom.sort() # Sort students by their number of students
-
-        for tup in classroom:
-            limited_infection(tup[1], targetNum-1)
-
-        coaches = []
+            adjacency.append((len(student.students),student))
         for coach in focus.coaches:
-            coaches.append((len(coach.coaches), coach))
+            adjacency.append((len(coach.students), coach))
 
-        coaches.sort()  # Sort coaches by their number of coaches
+        adjacency.sort() # Sort students by their number of students
 
-        for tup in coaches:
+        for tup in adjacency:
             limited_infection(tup[1], targetNum-1)
 
 
