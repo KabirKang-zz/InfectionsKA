@@ -41,16 +41,14 @@ def spread(spreadFrom, spreadTo):
 
 def limited_infection(focus, targetNum):
     # The basic and most common case is a teacher that has many courses
-
-    if targetNum<1:
-        return
-
     focus.infect()
-    User.total_infected += 1
+
+    if User.total_infected>=targetNum:
+        return
 
     classroom = []
     for student in focus.students:
-        classroom.append((len(student.students,student)))
+        classroom.append((len(student.students),student))
 
     classroom.sort() # Sort students by their number of students
 
